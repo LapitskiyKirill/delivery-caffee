@@ -23,6 +23,6 @@ public class Caffee {
     @Column(name = "work_time")
     private String workTime;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "caffee")
     private List<User> users;
 }

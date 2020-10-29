@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "\"user\"")
 @Data
-@Getter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,4 +23,8 @@ public class User {
 
     @Column(name = "role")
     private Role role;
+
+    @ManyToOne
+    @JoinColumn(name = "caffee_id")
+    private Caffee caffee;
 }
