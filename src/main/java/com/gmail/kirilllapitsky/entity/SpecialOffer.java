@@ -14,13 +14,13 @@ public class SpecialOffer {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
 
     @ManyToOne
-    @JoinColumn(name = "item_id")
-    private Item item;
+    @JoinColumn(name = "description_id")
+    private Description description;
 
-    @Column(name = "review")
-    private String review;
+    @Column(name = "cost")
+    private int cost;
 }
