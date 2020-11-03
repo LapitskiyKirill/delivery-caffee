@@ -5,18 +5,17 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "token")
+@Table(name = "special_offer_items")
 @Data
-public class Token {
+public class SpecialOfferItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "offer_id")
+    private Long specialOfferId;
 
-    @Column(name = "value")
-    private String value;
+    @Column(name = "item_id")
+    private Long itemId;
 }

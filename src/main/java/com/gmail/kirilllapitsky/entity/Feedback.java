@@ -5,9 +5,9 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "token")
+@Table(name = "feedback")
 @Data
-public class Token {
+public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -17,6 +17,10 @@ public class Token {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "value")
-    private String value;
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
+
+    @Column(name = "review")
+    private String review;
 }

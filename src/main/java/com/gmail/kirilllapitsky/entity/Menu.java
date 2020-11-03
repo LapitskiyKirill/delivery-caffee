@@ -1,27 +1,17 @@
 package com.gmail.kirilllapitsky.entity;
 
-import com.gmail.kirilllapitsky.enumerable.Role;
 import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "\"user\"")
+@Table(name = "menu")
 @Data
-public class User {
+public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
-    @Column(name = "login")
-    private String login;
-
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "role")
-    private Role role;
 
     @ManyToOne
     @JoinColumn(name = "caffee_id")
