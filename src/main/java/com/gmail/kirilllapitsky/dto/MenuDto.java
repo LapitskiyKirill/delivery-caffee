@@ -9,9 +9,18 @@ import java.util.List;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
 public class MenuDto {
-    private Long id;
+    public Long id;
 
-    private List<ItemDto> items;
+    public List<ItemDto> items;
 
-    private List<SpecialOffer> specialOffers;
+    public List<SpecialOffer> specialOffers;
+
+    public MenuDto() {
+    }
+
+    public MenuDto(Long id, List<ItemDto> items, List<SpecialOffer> specialOffers) {
+        this.id = id;
+        this.items = items;
+        this.specialOffers = specialOffers;
+    }
 }

@@ -8,13 +8,24 @@ import java.util.List;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
 public class CaffeeDto {
-    private Long id;
+    public Long id;
 
-    private String name;
+    public String name;
 
-    private String address;
+    public String address;
 
-    private String workTime;
+    public String workTime;
 
-    private List<Long> userIds;
+    public List<Long> userIds;
+
+    public CaffeeDto() {
+    }
+
+    public CaffeeDto(Long id, String name, String address, String workTime, List<Long> userIds) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.workTime = workTime;
+        this.userIds = userIds;
+    }
 }

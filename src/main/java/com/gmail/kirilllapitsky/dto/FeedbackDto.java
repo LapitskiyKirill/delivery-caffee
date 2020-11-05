@@ -8,9 +8,18 @@ import lombok.Data;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
 public class FeedbackDto {
-    private Long id;
+    public Long id;
 
-    private User user;
+    public User user;
 
-    private String review;
+    public String review;
+
+    public FeedbackDto() {
+    }
+
+    public FeedbackDto(Long id, User user, String review) {
+        this.id = id;
+        this.user = user;
+        this.review = review;
+    }
 }

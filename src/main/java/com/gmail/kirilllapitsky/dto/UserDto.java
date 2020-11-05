@@ -7,11 +7,21 @@ import lombok.Data;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
 public class UserDto {
-    private Long id;
+    public Long id;
 
-    private String login;
+    public String login;
 
-    private Role role;
+    public Role role;
 
-    private Long caffeeId;
+    public Long caffeeId;
+
+    public UserDto() {
+    }
+
+    public UserDto(Long id, String login, Role role, Long caffeeId) {
+        this.id = id;
+        this.login = login;
+        this.role = role;
+        this.caffeeId = caffeeId;
+    }
 }
