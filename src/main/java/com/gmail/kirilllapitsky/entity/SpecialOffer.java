@@ -1,5 +1,6 @@
 package com.gmail.kirilllapitsky.entity;
 
+import io.swagger.models.auth.In;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,5 +23,5 @@ public class SpecialOffer {
     private Description description;
 
     @Column(name = "cost")
-    private int cost;
+    private Integer cost;
 }

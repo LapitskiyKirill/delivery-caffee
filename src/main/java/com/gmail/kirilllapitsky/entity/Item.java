@@ -14,17 +14,17 @@ public class Item {
     @Column(name = "id")
     private Long id;
 
-    @OneToMany
-    @JoinColumn(name = "menu_id")
-    private List<Menu> menu;
-
     @OneToOne
     @JoinColumn(name = "description_id")
     private Description description;
 
     @Column(name = "cost")
-    private int cost;
+    private Integer cost;
 
     @Column(name = "discount")
-    private int discount;
+    private Integer discount;
+
+    @OneToMany
+    @JoinColumn(name = "menu_id")
+    private List<Menu> menu;
 }
