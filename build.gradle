@@ -6,7 +6,6 @@ group 'com.gmail.kirilllapitsky'
 version '0.1'
 
 
-
 repositories {
     mavenCentral()
 }
@@ -28,6 +27,7 @@ dependencies {
     compile "org.modelmapper:modelmapper:2.3.0"
     compileOnly 'org.projectlombok:lombok:1.18.16'
     annotationProcessor 'org.projectlombok:lombok:1.18.16'
+    implementation "io.springfox:springfox-boot-starter:3.0.0"
 
     testCompileOnly 'org.projectlombok:lombok:1.18.16'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
