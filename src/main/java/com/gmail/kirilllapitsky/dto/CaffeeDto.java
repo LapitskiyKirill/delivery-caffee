@@ -16,16 +16,16 @@ public class CaffeeDto {
 
     public String workTime;
 
-    public List<Long> userIds;
+    public List<UserDto> users;
 
     public CaffeeDto() {
     }
 
-    public CaffeeDto(Long id, String name, String address, String workTime, List<Long> userIds) {
+    public CaffeeDto(Long id, String name, String address, String workTime, List<UserDto> userIds) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.workTime = workTime;
-        this.userIds = userIds;
+        this.users = userIds;
     }
 }

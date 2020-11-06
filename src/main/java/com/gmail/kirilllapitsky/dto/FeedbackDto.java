@@ -10,14 +10,14 @@ import lombok.Data;
 public class FeedbackDto {
     public Long id;
 
-    public User user;
+    public UserDto user;
 
     public String review;
 
     public FeedbackDto() {
     }
 
-    public FeedbackDto(Long id, User user, String review) {
+    public FeedbackDto(Long id, UserDto user, String review) {
         this.id = id;
         this.user = user;
         this.review = review;

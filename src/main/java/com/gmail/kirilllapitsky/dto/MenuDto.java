@@ -1,7 +1,6 @@
 package com.gmail.kirilllapitsky.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.gmail.kirilllapitsky.entity.SpecialOffer;
 import lombok.Data;
 
 import java.util.List;
