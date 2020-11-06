@@ -17,8 +17,4 @@ public class OfferController {
         return specialOfferItemsService.findSpecialOfferItemsById(id);
     }
 
-    @GetMapping("geta")
-    SpecialOfferDto geta(@RequestParam Long id) {
-        return specialOfferItemsService.find(id);
-    }
 }

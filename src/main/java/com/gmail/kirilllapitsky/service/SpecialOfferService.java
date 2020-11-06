@@ -3,9 +3,6 @@ package com.gmail.kirilllapitsky.service;
 import com.gmail.kirilllapitsky.dto.FeedbackDto;
 import com.gmail.kirilllapitsky.dto.ItemDto;
 import com.gmail.kirilllapitsky.dto.SpecialOfferDto;
-import com.gmail.kirilllapitsky.entity.Item;
-import com.gmail.kirilllapitsky.entity.SpecialOffer;
-import com.gmail.kirilllapitsky.entity.SpecialOfferItems;
 import com.gmail.kirilllapitsky.repository.FeedBackRepository;
 import com.gmail.kirilllapitsky.repository.ItemRepository;
 import com.gmail.kirilllapitsky.repository.SpecialOfferItemsRepository;
@@ -30,7 +27,7 @@ public class SpecialOfferService {
         this.feedBackRepository = feedBackRepository;
     }
 
-    public SpecialOfferDto find(Long id) {
+    public SpecialOfferDto findSpecialOfferItemsById(Long id) {
         SpecialOfferDto offer = Mapper.map(specialOfferRepository.findById(id).orElseThrow(), SpecialOfferDto.class);
         List<ItemDto> items = Mapper.mapList(specialOfferItemsRepository.findAllBySpecialOfferId(id).stream()
                 .map(i -> itemRepository.findById(
