@@ -23,8 +23,4 @@ public class Item {
 
     @Column(name = "discount")
     private Integer discount;
-
-    @OneToMany
-    @JoinColumn(name = "menu_id")
-    private List<Menu> menu;
 }

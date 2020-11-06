@@ -13,12 +13,12 @@ public class MenuDto {
 
     public List<ItemDto> items;
 
-    public List<SpecialOffer> specialOffers;
+    public List<SpecialOfferDto> specialOffers;
 
     public MenuDto() {
     }
 
-    public MenuDto(Long id, List<ItemDto> items, List<SpecialOffer> specialOffers) {
+    public MenuDto(Long id, List<ItemDto> items, List<SpecialOfferDto> specialOffers) {
         this.id = id;
         this.items = items;
         this.specialOffers = specialOffers;
