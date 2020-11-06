@@ -31,7 +31,7 @@ public class MenuService {
         this.specialOfferService = specialOfferService;
     }
 
-    public MenuDto find(Long id) {
+    public MenuDto findById(Long id) {
         MenuDto menu = Mapper.map(menuRepository.findById(id).get(), MenuDto.class);
         List<ItemDto> menuItems = Mapper.mapList(menuItemsRepository.findAllByMenuId(id).stream()
                 .map(i -> itemRepository.findById(
