@@ -2,30 +2,21 @@ package com.gmail.kirilllapitsky.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
+@RequiredArgsConstructor
 public class CaffeeDto {
-    public Long id;
+    private Long id;
 
-    public String name;
+    private String name;
 
-    public String address;
+    private String address;
 
-    public String workTime;
+    private String workTime;
 
-    public List<UserDto> users;
-
-    public CaffeeDto() {
-    }
-
-    public CaffeeDto(Long id, String name, String address, String workTime, List<UserDto> userIds) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.workTime = workTime;
-        this.users = userIds;
-    }
+    private List<UserDto> users;
 }

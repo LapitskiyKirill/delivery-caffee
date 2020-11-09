@@ -3,25 +3,17 @@ package com.gmail.kirilllapitsky.dto;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.gmail.kirilllapitsky.enumerable.Role;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
+@RequiredArgsConstructor
 public class UserDto {
-    public Long id;
+    private Long id;
 
-    public String login;
+    private String login;
 
-    public Role role;
+    private Role role;
 
-    public Long caffeeId;
-
-    public UserDto() {
-    }
-
-    public UserDto(Long id, String login, Role role, Long caffeeId) {
-        this.id = id;
-        this.login = login;
-        this.role = role;
-        this.caffeeId = caffeeId;
-    }
+    private Long caffeeId;
 }

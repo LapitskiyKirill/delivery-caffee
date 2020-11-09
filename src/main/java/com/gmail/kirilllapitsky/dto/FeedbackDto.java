@@ -1,25 +1,17 @@
 package com.gmail.kirilllapitsky.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.gmail.kirilllapitsky.entity.User;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
+@RequiredArgsConstructor
 public class FeedbackDto {
-    public Long id;
+    private Long id;
 
-    public UserDto user;
+    private UserDto user;
 
-    public String review;
-
-    public FeedbackDto() {
-    }
-
-    public FeedbackDto(Long id, UserDto user, String review) {
-        this.id = id;
-        this.user = user;
-        this.review = review;
-    }
+    private String review;
 }

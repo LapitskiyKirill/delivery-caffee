@@ -2,24 +2,17 @@ package com.gmail.kirilllapitsky.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
+@RequiredArgsConstructor
 public class MenuDto {
-    public Long id;
+    private Long id;
 
-    public List<ItemDto> items;
+    private List<ItemDto> menuItems;
 
-    public List<SpecialOfferDto> specialOffers;
-
-    public MenuDto() {
-    }
-
-    public MenuDto(Long id, List<ItemDto> items, List<SpecialOfferDto> specialOffers) {
-        this.id = id;
-        this.items = items;
-        this.specialOffers = specialOffers;
-    }
+    private List<SpecialOfferDto> specialOffers;
 }

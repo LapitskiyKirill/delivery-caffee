@@ -3,27 +3,19 @@ package com.gmail.kirilllapitsky.dto;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.gmail.kirilllapitsky.entity.Description;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
+@RequiredArgsConstructor
 public class SpecialOfferDto {
-    public Long id;
+    private Long id;
 
-    public Description description;
+    private Description description;
 
-    public Integer cost;
+    private Integer cost;
 
-    public List<ItemDto> items;
-
-    public SpecialOfferDto() {
-    }
-
-    public SpecialOfferDto(Long id, Description description, int cost, List<ItemDto> items) {
-        this.id = id;
-        this.description = description;
-        this.cost = cost;
-        this.items = items;
-    }
+    private List<ItemDto> specialOfferItems;
 }
