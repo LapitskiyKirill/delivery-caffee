@@ -1,8 +1,8 @@
 package com.gmail.kirilllapitsky.entity;
 
-import io.swagger.models.auth.In;
 import lombok.Data;
 
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -24,4 +24,7 @@ public class SpecialOffer {
 
     @Column(name = "cost")
     private Integer cost;
+
+    @OneToMany(mappedBy = "specialOffer")
+    private List<SpecialOfferItems> specialOfferItems;
 }

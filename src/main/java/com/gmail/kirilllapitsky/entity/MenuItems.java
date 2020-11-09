@@ -13,10 +13,11 @@ public class MenuItems {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "menu_id")
-    private Long menuId;
+    @ManyToOne
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
 
-    @Column(name = "item_id")
-    private Long itemId;
-
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
 }

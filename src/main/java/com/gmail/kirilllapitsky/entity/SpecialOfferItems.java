@@ -13,9 +13,11 @@ public class SpecialOfferItems {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "offer_id")
-    private Long specialOfferId;
+    @ManyToOne
+    @JoinColumn(name = "offer_id")
+    private SpecialOffer specialOffer;
 
-    @Column(name = "item_id")
-    private Long itemId;
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item specialOfferItem;
 }

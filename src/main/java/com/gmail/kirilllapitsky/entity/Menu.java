@@ -3,6 +3,7 @@ package com.gmail.kirilllapitsky.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "menu")
@@ -16,4 +17,10 @@ public class Menu {
     @ManyToOne
     @JoinColumn(name = "caffee_id")
     private Caffee caffee;
+
+    @OneToMany(mappedBy = "menu")
+    private List<MenuItems> menuItems;
+
+    @OneToMany(mappedBy = "menu")
+    private List<SpecialOffer> specialOffers;
 }
