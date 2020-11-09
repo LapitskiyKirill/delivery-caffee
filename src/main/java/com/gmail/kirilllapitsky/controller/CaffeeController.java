@@ -16,8 +16,8 @@ public class CaffeeController {
         this.caffeeService = caffeeService;
     }
 
-    @GetMapping("get")
-    CaffeeDto get(@RequestParam Long id) {
-        return caffeeService.findById(id);
+    @GetMapping("findById")
+    CaffeeDto find(@RequestParam Long id) {
+        return caffeeService.find(id);
     }
 }

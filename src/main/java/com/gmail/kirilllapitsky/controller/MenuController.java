@@ -16,8 +16,8 @@ public class MenuController {
         this.menuService = menuService;
     }
 
-    @GetMapping("get")
-    MenuDto get(@RequestParam Long id) {
-        return  menuService.findById(id);
+    @GetMapping("findById")
+    MenuDto find(@RequestParam Long id) {
+        return  menuService.find(id);
     }
 }

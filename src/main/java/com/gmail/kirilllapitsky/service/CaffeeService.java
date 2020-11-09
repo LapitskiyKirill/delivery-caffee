@@ -15,10 +15,7 @@ public class CaffeeService {
         this.caffeeRepository = caffeeRepository;
     }
 
-    public CaffeeDto findById(Long id) {
-        Caffee caffee = caffeeRepository.findById(id).get();
-        CaffeeDto caffeeDto = Mapper.map(caffee, CaffeeDto.class);
-        caffeeDto.setUsers(Mapper.mapList(caffee.getUsers(), UserDto.class));
-        return caffeeDto;
+    public CaffeeDto find(Long id) {
+        return Mapper.map(caffeeRepository.findById(id).orElseThrow(), CaffeeDto.class);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("specialOffer")
+
 public class OfferController {
     private final SpecialOfferService specialOfferItemsService;
 
@@ -16,9 +17,8 @@ public class OfferController {
         this.specialOfferItemsService = specialOfferItemsService;
     }
 
-    @GetMapping("get")
-    SpecialOfferDto get(@RequestParam Long id) {
-        return specialOfferItemsService.findSpecialOfferItemsById(id);
+    @GetMapping("findById")
+    public SpecialOfferDto find(@RequestParam Long id) {
+        return specialOfferItemsService.find(id);
     }
-
 }
