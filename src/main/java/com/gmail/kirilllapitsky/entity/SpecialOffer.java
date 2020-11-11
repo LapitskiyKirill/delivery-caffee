@@ -25,6 +25,11 @@ public class SpecialOffer {
     @Column(name = "cost")
     private Integer cost;
 
-    @OneToMany(mappedBy = "specialOffer")
-    private List<SpecialOfferItems> specialOfferItems;
+    @ManyToMany
+    @JoinTable(
+            name = "special_offer_items",
+            joinColumns = @JoinColumn(name = "offer_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id")
+    )
+    private List<Item> specialOfferItems;
 }

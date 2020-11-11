@@ -26,4 +26,20 @@ public class Item {
 
     @OneToMany(mappedBy = "item")
     private List<Feedback> feedback;
+
+    @ManyToMany
+    @JoinTable(
+            name = "menu_items",
+            joinColumns = @JoinColumn(name = "item_id"),
+            inverseJoinColumns = @JoinColumn(name = "menu_id")
+    )
+    private List<Menu> menus;
+
+    @ManyToMany
+    @JoinTable(
+            name = "special_offer_items",
+            joinColumns = @JoinColumn(name = "item_id"),
+            inverseJoinColumns = @JoinColumn(name = "offer_id")
+    )
+    private List<SpecialOffer> specialOffers;
 }
