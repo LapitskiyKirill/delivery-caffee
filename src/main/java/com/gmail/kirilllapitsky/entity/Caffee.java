@@ -25,4 +25,10 @@ public class Caffee {
 
     @OneToMany(mappedBy = "caffee")
     private List<User> users;
+
+    public Caffee(String name, String address, String workTime) {
+        this.name = name;
+        this.address = address;
+        this.workTime = workTime;
+    }
 }
