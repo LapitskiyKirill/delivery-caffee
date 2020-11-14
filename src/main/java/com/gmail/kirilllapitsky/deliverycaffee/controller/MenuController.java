@@ -1,7 +1,7 @@
-package com.gmail.kirilllapitsky.controller;
+package com.gmail.kirilllapitsky.deliverycaffee.controller;
 
-import com.gmail.kirilllapitsky.dto.MenuDto;
-import com.gmail.kirilllapitsky.service.MenuService;
+import com.gmail.kirilllapitsky.deliverycaffee.dto.MenuDto;
+import com.gmail.kirilllapitsky.deliverycaffee.service.MenuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
