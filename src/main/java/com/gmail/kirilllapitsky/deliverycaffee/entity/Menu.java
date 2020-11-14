@@ -20,8 +20,13 @@ public class Menu {
     @JoinColumn(name = "caffee_id")
     private Caffee caffee;
 
-    @OneToMany(mappedBy = "menu")
-    private List<MenuItems> menuItems;
+    @ManyToMany
+    @JoinTable(
+            name = "menu_items",
+            joinColumns = @JoinColumn(name = "menu_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id")
+    )
+    private List<Item> menuItems;
 
     @OneToMany(mappedBy = "menu")
     private List<SpecialOffer> specialOffers;
