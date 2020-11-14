@@ -3,14 +3,14 @@ package com.gmail.kirilllapitsky.controller;
 import com.gmail.kirilllapitsky.dto.UserDto;
 import com.gmail.kirilllapitsky.enumerable.Role;
 import com.gmail.kirilllapitsky.service.UserService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("user")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
 

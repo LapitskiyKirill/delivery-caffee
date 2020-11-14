@@ -6,15 +6,13 @@ import com.gmail.kirilllapitsky.dto.NewCaffeeDto;
 import com.gmail.kirilllapitsky.entity.Caffee;
 import com.gmail.kirilllapitsky.repository.CaffeeRepository;
 import com.gmail.kirilllapitsky.util.Mapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class CaffeeService {
     private final CaffeeRepository caffeeRepository;
-
-    public CaffeeService(CaffeeRepository caffeeRepository) {
-        this.caffeeRepository = caffeeRepository;
-    }
 
     public CaffeeDto find(Long id) {
         return Mapper.map(caffeeRepository.findById(id).orElseThrow(), CaffeeDto.class);

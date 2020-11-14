@@ -1,13 +1,13 @@
 package com.gmail.kirilllapitsky.service;
 
 import com.gmail.kirilllapitsky.dto.MenuDto;
-import com.gmail.kirilllapitsky.repository.*;
+import com.gmail.kirilllapitsky.repository.MenuRepository;
 import com.gmail.kirilllapitsky.util.Mapper;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MenuService {
     private final MenuRepository menuRepository;
 

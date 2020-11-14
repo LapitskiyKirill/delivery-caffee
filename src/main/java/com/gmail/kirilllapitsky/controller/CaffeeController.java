@@ -4,12 +4,12 @@ import com.gmail.kirilllapitsky.dto.CaffeeDto;
 import com.gmail.kirilllapitsky.dto.EditCaffeeDto;
 import com.gmail.kirilllapitsky.dto.NewCaffeeDto;
 import com.gmail.kirilllapitsky.service.CaffeeService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("caffee")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CaffeeController {
     private final CaffeeService caffeeService;
 
