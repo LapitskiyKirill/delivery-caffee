@@ -1,6 +1,6 @@
 package com.gmail.kirilllapitsky.deliverycaffee.repository;
 
-import com.gmail.kirilllapitsky.deliverycaffee.entity.Caffee;
+import com.gmail.kirilllapitsky.deliverycaffee.entity.Cafe;
 import com.gmail.kirilllapitsky.deliverycaffee.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
@@ -12,5 +12,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     Optional<User> findById(Long id);
 
-    List<User> findAllByCaffee(Caffee caffee);
+    List<User> findAllByCafe(Cafe cafe);
 }
