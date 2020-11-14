@@ -26,4 +26,11 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "caffee_id")
     private Caffee caffee;
+
+    public User(String login, String password, Role role, Caffee caffee) {
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.caffee = caffee;
+    }
 }
