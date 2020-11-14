@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NewCaffeeDto {
+public class NewCafeDto {
     private String name;
 
     private String address;

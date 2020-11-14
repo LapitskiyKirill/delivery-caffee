@@ -18,7 +18,7 @@ public class Menu {
 
     @ManyToOne
     @JoinColumn(name = "caffee_id")
-    private Caffee caffee;
+    private Cafe cafe;
 
     @ManyToMany
     @JoinTable(

@@ -19,9 +19,9 @@ public class UserController {
         userService.setRole(id, role);
     }
 
-    @PostMapping("setCaffee")
-    public void setCaffee(@RequestParam Long userId, @RequestParam Long caffeeId) {
-        userService.setCaffee(userId, caffeeId);
+    @PostMapping("setCafe")
+    public void setCafe(@RequestParam Long userId, @RequestParam Long cafeId) {
+        userService.setCafe(userId, cafeId);
     }
 
     @GetMapping("findByLogin")
@@ -29,9 +29,9 @@ public class UserController {
         return userService.findByLogin(login);
     }
 
-    @GetMapping("findByCaffee")
-    public List<UserDto> find(@RequestParam Long caffeeId) {
-        return userService.findByCaffee(caffeeId);
+    @GetMapping("findByCafe")
+    public List<UserDto> find(@RequestParam Long cafeId) {
+        return userService.findByCafe(cafeId);
     }
 
 }

@@ -5,11 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EditCaffeeDto {
+public class CafeDto {
     private Long id;
 
     private String name;
@@ -17,4 +19,6 @@ public class EditCaffeeDto {
     private String address;
 
     private String workTime;
+
+    private List<UserDto> users;
 }
