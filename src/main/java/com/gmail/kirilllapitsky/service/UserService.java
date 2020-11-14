@@ -6,13 +6,13 @@ import com.gmail.kirilllapitsky.enumerable.Role;
 import com.gmail.kirilllapitsky.repository.CaffeeRepository;
 import com.gmail.kirilllapitsky.repository.UserRepository;
 import com.gmail.kirilllapitsky.util.Mapper;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final CaffeeRepository caffeeRepository;
