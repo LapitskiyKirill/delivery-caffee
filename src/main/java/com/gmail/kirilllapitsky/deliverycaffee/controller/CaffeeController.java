@@ -19,8 +19,8 @@ public class CaffeeController {
     }
 
     @PostMapping("create")
-    public void create(@RequestBody NewCaffeeDto newCaffeeDto) {
-        caffeeService.create(newCaffeeDto);
+    public CaffeeDto create(@RequestBody NewCaffeeDto newCaffeeDto) {
+        return caffeeService.create(newCaffeeDto);
     }
 
     @PostMapping("edit")

@@ -18,12 +18,11 @@ public class CaffeeService {
         return Mapper.map(caffeeRepository.findById(id).orElseThrow(), CaffeeDto.class);
     }
 
-    public void create(NewCaffeeDto newCaffeeDto) {
-        caffeeRepository.save(new Caffee(
-                newCaffeeDto.getName(),
-                newCaffeeDto.getAddress(),
-                newCaffeeDto.getWorkTime()
-        ));
+    public CaffeeDto create(NewCaffeeDto newCaffeeDto) {
+        return Mapper.map(
+                caffeeRepository.save(Mapper.map(newCaffeeDto, Caffee.class)),
+                CaffeeDto.class
+        );
     }
 
     public void edit(EditCaffeeDto editCaffeeDto) {
