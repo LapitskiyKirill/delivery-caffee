@@ -1,6 +1,7 @@
 package com.gmail.kirilllapitsky.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "special_offer")
 @Data
+@NoArgsConstructor
 public class SpecialOffer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

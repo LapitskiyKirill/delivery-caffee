@@ -1,12 +1,13 @@
 package com.gmail.kirilllapitsky.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "special_offer_items")
-@Data
+@Data@NoArgsConstructor
 public class SpecialOfferItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

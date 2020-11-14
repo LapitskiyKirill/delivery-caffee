@@ -1,12 +1,14 @@
 package com.gmail.kirilllapitsky.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "token")
 @Data
+@NoArgsConstructor
 public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

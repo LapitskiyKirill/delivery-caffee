@@ -1,12 +1,14 @@
 package com.gmail.kirilllapitsky.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "feedback")
 @Data
+@NoArgsConstructor
 public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

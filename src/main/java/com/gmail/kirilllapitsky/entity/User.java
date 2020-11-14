@@ -2,12 +2,14 @@ package com.gmail.kirilllapitsky.entity;
 
 import com.gmail.kirilllapitsky.enumerable.Role;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "\"user\"")
 @Data
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
