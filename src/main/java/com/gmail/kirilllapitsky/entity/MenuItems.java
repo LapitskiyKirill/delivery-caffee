@@ -1,12 +1,14 @@
 package com.gmail.kirilllapitsky.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "menu_items")
 @Data
+@NoArgsConstructor
 public class MenuItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
