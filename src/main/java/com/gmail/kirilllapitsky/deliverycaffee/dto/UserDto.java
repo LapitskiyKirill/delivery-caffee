@@ -2,12 +2,14 @@ package com.gmail.kirilllapitsky.deliverycaffee.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.gmail.kirilllapitsky.deliverycaffee.enumerable.Role;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserDto {
     private Long id;
 
