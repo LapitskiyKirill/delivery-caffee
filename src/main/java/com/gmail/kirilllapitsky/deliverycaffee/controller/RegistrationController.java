@@ -1,8 +1,7 @@
 package com.gmail.kirilllapitsky.deliverycaffee.controller;
 
-import com.gmail.kirilllapitsky.deliverycaffee.dto.RegisterCustomerDto;
-import com.gmail.kirilllapitsky.deliverycaffee.exception.RegistrationException;
-import com.gmail.kirilllapitsky.deliverycaffee.service.RegistrationCustomerService;
+import com.gmail.kirilllapitsky.deliverycaffee.dto.RegisterUserDto;
+import com.gmail.kirilllapitsky.deliverycaffee.service.RegistrationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/registration")
 @RequiredArgsConstructor
 public class RegistrationController {
-    private final RegistrationCustomerService registrationCustomerService;
+    private final RegistrationService registrationService;
 
     @PostMapping
-    public void userRegistration(@RequestBody RegisterCustomerDto userDto) throws RegistrationException {
-        registrationCustomerService.create(userDto);
+    public void userRegistration(@RequestBody RegisterUserDto userDto) {
+        registrationService.create(userDto);
     }
 }
