@@ -27,12 +27,12 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "caffee_id")
-    private Caffee caffee;
+    private Cafe cafe;
 
-    public User(String login, String password, Role role, Caffee caffee) {
+    public User(String login, String password, Role role, Cafe cafe) {
         this.login = login;
         this.password = password;
         this.role = role;
-        this.caffee = caffee;
+        this.cafe = cafe;
     }
 }
