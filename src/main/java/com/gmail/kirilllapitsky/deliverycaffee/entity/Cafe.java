@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "caffee")
 @Data
 @NoArgsConstructor
-public class Caffee {
+public class Cafe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,10 +25,10 @@ public class Caffee {
     @Column(name = "work_time")
     private String workTime;
 
-    @OneToMany(mappedBy = "caffee")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "cafe", cascade = CascadeType.ALL)
     private List<User> users;
 
-    public Caffee(String name, String address, String workTime) {
+    public Cafe(String name, String address, String workTime) {
         this.name = name;
         this.address = address;
         this.workTime = workTime;

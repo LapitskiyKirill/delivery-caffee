@@ -3,7 +3,7 @@ package com.gmail.kirilllapitsky.deliverycaffee.service;
 import com.gmail.kirilllapitsky.deliverycaffee.dto.UserDto;
 import com.gmail.kirilllapitsky.deliverycaffee.entity.User;
 import com.gmail.kirilllapitsky.deliverycaffee.enumerable.Role;
-import com.gmail.kirilllapitsky.deliverycaffee.repository.CaffeeRepository;
+import com.gmail.kirilllapitsky.deliverycaffee.repository.CafeRepository;
 import com.gmail.kirilllapitsky.deliverycaffee.repository.UserRepository;
 import com.gmail.kirilllapitsky.deliverycaffee.util.Mapper;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class    UserService {
     private final UserRepository userRepository;
-    private final CaffeeRepository caffeeRepository;
+    private final CafeRepository cafeRepository;
 
     public void setRole(Long id, Role role) {
         User user = userRepository.findById(id).orElseThrow();
@@ -24,16 +24,16 @@ public class    UserService {
     }
 
     public UserDto findByLogin(String login) {
-        return Mapper.map(userRepository.findByLogin(login), UserDto.class);
+        return Mapper.map(userRepository.findByLogin(login).orElseThrow(), UserDto.class);
     }
 
-    public List<UserDto> findByCaffee(Long caffeeId) {
-        return Mapper.mapList(userRepository.findAllByCaffee(caffeeRepository.findById(caffeeId).orElseThrow()), UserDto.class);
+    public List<UserDto> findByCafe(Long cafeId) {
+        return Mapper.mapList(userRepository.findAllByCafe(cafeRepository.findById(cafeId).orElseThrow()), UserDto.class);
     }
 
-    public void setCaffee(Long userId, Long caffeeId) {
+    public void setCafe(Long userId, Long cafeId) {
         User user = userRepository.findById(userId).orElseThrow();
-        user.setCaffee(caffeeRepository.findById(caffeeId).orElseThrow());
+        user.setCafe(cafeRepository.findById(cafeId).orElseThrow());
         userRepository.save(user);
     }
 }

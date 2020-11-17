@@ -1,22 +1,18 @@
 package com.gmail.kirilllapitsky.deliverycaffee.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
-
-import java.util.List;
+import lombok.NoArgsConstructor;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
-@RequiredArgsConstructor
-public class CaffeeDto {
-    private Long id;
-
+@NoArgsConstructor
+@AllArgsConstructor
+public class NewCafeDto {
     private String name;
 
     private String address;
 
     private String workTime;
-
-    private List<UserDto> users;
 }
