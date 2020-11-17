@@ -17,5 +17,5 @@ public class UserDto {
 
     private Role role;
 
-    private Long caffeeId;
+    private Long cafeId;
 }
