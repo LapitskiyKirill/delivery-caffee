@@ -1,8 +1,10 @@
 package com.gmail.kirilllapitsky.deliverycaffee.entity;
 
 import com.gmail.kirilllapitsky.deliverycaffee.enumerable.Role;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 

@@ -1,8 +1,12 @@
 package com.gmail.kirilllapitsky.deliverycaffee.util;
 
+import com.gmail.kirilllapitsky.deliverycaffee.dto.RegisterCustomerDto;
+import com.gmail.kirilllapitsky.deliverycaffee.entity.User;
+import com.gmail.kirilllapitsky.deliverycaffee.enumerable.Role;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 
+import javax.print.attribute.standard.Destination;
 import java.util.List;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -16,6 +20,9 @@ public class Mapper {
                 .setFieldMatchingEnabled(true)
                 .setSkipNullEnabled(false)
                 .setMatchingStrategy(MatchingStrategies.LOOSE);
+        mapper.typeMap(RegisterCustomerDto.class, User.class).addMappings(mapper ->
+                mapper.map(__ -> Role.CUSTOMER, User::setRole)
+        );
     }
 
     public static <T> T map(Object element, Class<T> classType) {
