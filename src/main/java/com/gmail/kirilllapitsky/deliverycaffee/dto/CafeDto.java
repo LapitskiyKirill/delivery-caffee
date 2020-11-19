@@ -18,7 +18,7 @@ public class CafeDto {
 
     private String address;
 
-    private String workTime;
+    private WorkTimeDto workTime;
 
     private List<UserDto> users;
 }

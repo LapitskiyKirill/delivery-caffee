@@ -1,6 +1,7 @@
 package com.gmail.kirilllapitsky.deliverycaffee.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.gmail.kirilllapitsky.deliverycaffee.entity.WorkTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,5 +17,5 @@ public class EditCafeDto {
 
     private String address;
 
-    private String workTime;
+    private WorkTime workTime;
 }

@@ -22,9 +22,4 @@ public class CafeController {
     public CafeDto create(@RequestBody NewCafeDto newCafeDto) {
         return cafeService.create(newCafeDto);
     }
-
-    @PostMapping("edit")
-    public void edit(@RequestBody EditCafeDto editCafeDto) {
-        cafeService.edit(editCafeDto);
-    }
 }

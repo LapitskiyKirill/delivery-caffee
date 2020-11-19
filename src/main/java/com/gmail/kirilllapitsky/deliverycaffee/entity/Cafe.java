@@ -22,13 +22,14 @@ public class Cafe {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "work_time")
-    private String workTime;
+    @OneToOne
+    @JoinColumn(name = "work_time_id")
+    private WorkTime workTime;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "cafe", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cafe", cascade = CascadeType.ALL)
     private List<User> users;
 
-    public Cafe(String name, String address, String workTime) {
+    public Cafe(String name, String address, WorkTime workTime) {
         this.name = name;
         this.address = address;
         this.workTime = workTime;

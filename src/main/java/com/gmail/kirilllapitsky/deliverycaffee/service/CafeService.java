@@ -24,12 +24,4 @@ public class CafeService {
                 CafeDto.class
         );
     }
-
-    public void edit(EditCafeDto editCafeDto) {
-        Cafe cafe = cafeRepository.findById(editCafeDto.getId()).orElseThrow();
-        cafe.setName(editCafeDto.getName());
-        cafe.setAddress(editCafeDto.getAddress());
-        cafe.setWorkTime(editCafeDto.getWorkTime());
-        cafeRepository.save(cafe);
-    }
 }
