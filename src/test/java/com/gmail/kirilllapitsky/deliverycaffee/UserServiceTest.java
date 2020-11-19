@@ -27,7 +27,7 @@ public class UserServiceTest {
 
     @Test
     public void changeUserRole_whenSaveAndRetreiveEntity_thenOK() {
-        User user = new User("login", "password", Role.CLIENT, null);
+        User user = new User("login", "password", Role.CUSTOMER, null);
         userRepository.save(user);
         userService.setRole(user.getId(), Role.MANAGER);
         assertEquals(Role.MANAGER, userRepository.findById(user.getId()).orElseThrow().getRole());
