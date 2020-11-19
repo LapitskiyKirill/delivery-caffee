@@ -30,7 +30,7 @@ public class UserServiceTest extends ServiceTest {
 
     @Test
     public void changeUserRole_whenSaveAndRetrieveEntity_thenOK() {
-        User user = new User("login", "password", Role.CLIENT, null);
+        User user = new User("login", "password", Role.CUSTOMER, null);
         userRepository.save(user);
         userService.setRole(user.getId(), Role.MANAGER);
         assertEquals(Role.MANAGER, userRepository.findById(user.getId()).orElseThrow().getRole());
@@ -38,7 +38,7 @@ public class UserServiceTest extends ServiceTest {
 
     @Test
     public void changeUserCafe_whenSaveAndRetrieveEntity_thenOK() {
-        User user = new User("login", "password", Role.CLIENT, null);
+        User user = new User("login", "password", Role.CUSTOMER, null);
         Cafe cafe = new Cafe("name", "address", "worktime");
         cafeRepository.save(cafe);
         userRepository.save(user);
@@ -48,7 +48,7 @@ public class UserServiceTest extends ServiceTest {
 
     @Test
     public void shouldFindUserByLogin() {
-        User user = new User("login", "password", Role.CLIENT, null);
+        User user = new User("login", "password", Role.CUSTOMER, null);
         userRepository.save(user);
         assertEquals(Mapper.map(user, UserDto.class), userService.findByLogin(user.getLogin()));
     }
@@ -59,7 +59,7 @@ public class UserServiceTest extends ServiceTest {
         cafeRepository.save(cafe);
         User user1 = new User("login1", "password1", Role.MANAGER, cafe);
         User user2 = new User("login2", "password2", Role.MANAGER, cafe);
-        User user3 = new User("login3", "password3", Role.CLIENT, null);
+        User user3 = new User("login3", "password3", Role.CUSTOMER, null);
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
