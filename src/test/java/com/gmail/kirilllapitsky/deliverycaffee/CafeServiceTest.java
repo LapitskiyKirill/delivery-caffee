@@ -29,6 +29,7 @@ public class CafeServiceTest extends ServiceTest {
     @Test
     public void shouldSetWorkTime() {
         NewCafeDto newCafeDto = TestData.getNewCafeDto();
+        newCafeDto.setName("name21");
         cafeService.create(newCafeDto);
         Cafe cafe = cafeRepository.findByName(newCafeDto.getName()).orElseThrow();
         NewWorkTimeDto newWorkTimeDto = TestData.getNewWorkTimeDto(cafe.getId());
