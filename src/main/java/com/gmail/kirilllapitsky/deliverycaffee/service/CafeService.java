@@ -24,8 +24,8 @@ public class CafeService {
         cafeRepository.save(Mapper.map(newCafeDto, Cafe.class));
     }
 
-    public void setWorkTime(Long cafeId, NewWorkTimeDto newWorkTimeDto) {
-        Cafe cafe = cafeRepository.findById(cafeId).orElseThrow();
+    public void setWorkTime(NewWorkTimeDto newWorkTimeDto) {
+        Cafe cafe = cafeRepository.findById(newWorkTimeDto.getCafeId()).orElseThrow();
         WorkTime workTime = workTimeService.save(newWorkTimeDto, cafe);
         cafe.setWorkTime(workTime);
         cafeRepository.save(cafe);

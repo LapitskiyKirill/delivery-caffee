@@ -27,7 +27,7 @@ public class TestData {
         );
     }
 
-    public static NewWorkTimeDto getDayWorkTimeDto(Long cafeId) {
+    public static NewWorkTimeDto getNewWorkTimeDto(Long cafeId) {
         return new NewWorkTimeDto(cafeId, TestData.getDayWorkTimeDto());
     }
 

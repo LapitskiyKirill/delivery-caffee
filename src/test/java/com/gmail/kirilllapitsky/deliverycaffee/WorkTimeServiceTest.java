@@ -4,15 +4,11 @@ import com.gmail.kirilllapitsky.deliverycaffee.dto.DayWorkTimeDto;
 import com.gmail.kirilllapitsky.deliverycaffee.dto.NewWorkTimeDto;
 import com.gmail.kirilllapitsky.deliverycaffee.entity.Cafe;
 import com.gmail.kirilllapitsky.deliverycaffee.entity.WorkTime;
-import com.gmail.kirilllapitsky.deliverycaffee.enumerable.Days;
 import com.gmail.kirilllapitsky.deliverycaffee.repository.CafeRepository;
 import com.gmail.kirilllapitsky.deliverycaffee.service.WorkTimeService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
