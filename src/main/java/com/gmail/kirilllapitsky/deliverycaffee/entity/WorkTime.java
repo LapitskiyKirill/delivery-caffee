@@ -3,6 +3,9 @@ package com.gmail.kirilllapitsky.deliverycaffee.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,6 +25,11 @@ public class WorkTime {
     @JoinColumn(name = "caffee_id")
     private Cafe cafe;
 
-    @OneToMany(mappedBy = "workTime", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "cafeWorkTime", cascade = CascadeType.ALL)
     List<DayWorkTime> dayWorkTimes;
+
+    public WorkTime(Cafe cafe) {
+        this.cafe = cafe;
+    }
 }

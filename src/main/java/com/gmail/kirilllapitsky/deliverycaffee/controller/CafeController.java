@@ -19,7 +19,7 @@ public class CafeController {
     }
 
     @PostMapping("create")
-    public CafeDto create(@RequestBody NewCafeDto newCafeDto) {
-        return cafeService.create(newCafeDto);
+    public void create(@RequestBody NewCafeDto newCafeDto) {
+        cafeService.create(newCafeDto);
     }
 }

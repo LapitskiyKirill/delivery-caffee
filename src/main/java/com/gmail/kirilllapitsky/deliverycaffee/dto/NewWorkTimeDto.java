@@ -5,12 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NewCafeDto {
-    private String name;
-
-    private String address;
+public class NewWorkTimeDto {
+    private Long cafeId;
+    private List<DayWorkTimeDto> dayWorkTimes;
 }

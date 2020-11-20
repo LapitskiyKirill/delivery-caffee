@@ -1,9 +1,7 @@
 package com.gmail.kirilllapitsky.deliverycaffee.entity;
 
 import com.gmail.kirilllapitsky.deliverycaffee.enumerable.Days;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalTime;
@@ -13,10 +11,12 @@ import java.time.LocalTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class DayWorkTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @EqualsAndHashCode.Exclude
     private Long id;
 
     @Column(name = "day")
@@ -33,13 +33,7 @@ public class DayWorkTime {
 
     @ManyToOne
     @JoinColumn(name = "work_time_id")
-    private WorkTime workTime;
-
-    public DayWorkTime(Days day, LocalTime openTime, LocalTime closeTime, Boolean isDayOff, WorkTime workTime) {
-        this.day = day;
-        this.openTime = openTime;
-        this.closeTime = closeTime;
-        this.isDayOff = isDayOff;
-        this.workTime = workTime;
-    }
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    public WorkTime cafeWorkTime;
 }

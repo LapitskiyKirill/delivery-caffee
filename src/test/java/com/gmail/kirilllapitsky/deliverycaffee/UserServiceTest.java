@@ -11,8 +11,8 @@ import com.gmail.kirilllapitsky.deliverycaffee.util.Mapper;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 
@@ -30,42 +30,47 @@ public class UserServiceTest extends ServiceTest {
 
     @Test
     public void changeUserRole_whenSaveAndRetrieveEntity_thenOK() {
-        User user = new User("login", "password", Role.CUSTOMER, null);
+        User user = TestData.getUser(Role.CUSTOMER);
         userRepository.save(user);
         userService.setRole(user.getId(), Role.MANAGER);
-        assertEquals(Role.MANAGER, userRepository.findById(user.getId()).orElseThrow().getRole());
+        User testUser = userRepository.findById(user.getId()).orElseThrow();
+        assertEquals(Role.MANAGER, testUser.getRole());
     }
 
     @Test
     public void changeUserCafe_whenSaveAndRetrieveEntity_thenOK() {
-        User user = new User("login", "password", Role.CUSTOMER, null);
-        Cafe cafe = new Cafe("name", "address", "worktime");
+        User user = TestData.getUser(Role.CUSTOMER);
+        Cafe cafe = TestData.getCafe();
         cafeRepository.save(cafe);
         userRepository.save(user);
         userService.setCafe(user.getId(), cafe.getId());
-        assertEquals(cafe.getId(), userRepository.findById(user.getId()).orElseThrow().getCafe().getId());
+        User testUser = userRepository.findById(user.getId()).orElseThrow();
+        assertEquals(cafe.getId(), testUser.getCafe().getId());
     }
 
     @Test
     public void shouldFindUserByLogin() {
-        User user = new User("login", "password", Role.CUSTOMER, null);
+        User user = TestData.getUser(Role.CUSTOMER);
         userRepository.save(user);
-        assertEquals(Mapper.map(user, UserDto.class), userService.findByLogin(user.getLogin()));
+        UserDto userDto = Mapper.map(user, UserDto.class);
+        UserDto testUser = userService.findByLogin(user.getLogin());
+        assertEquals(userDto, testUser);
     }
 
     @Test
     public void shouldFindUsersByCafe() {
-        Cafe cafe = new Cafe("name", "address", "worktime");
+        Cafe cafe = TestData.getCafe();
         cafeRepository.save(cafe);
-        User user1 = new User("login1", "password1", Role.MANAGER, cafe);
-        User user2 = new User("login2", "password2", Role.MANAGER, cafe);
-        User user3 = new User("login3", "password3", Role.CUSTOMER, null);
-        userRepository.save(user1);
-        userRepository.save(user2);
-        userRepository.save(user3);
-        List<User> cafeManagers = new ArrayList<>();
-        cafeManagers.add(user1);
-        cafeManagers.add(user2);
-        assertEquals(userService.findByCafe(cafe.getId()), Mapper.mapList(cafeManagers, UserDto.class));
+        List<User> users = TestData.getListOfUsers();
+        users.get(0).setCafe(cafe);
+        userRepository.saveAll(users);
+        List<UserDto> userDto = userService.findByCafe(cafe.getId());
+        List<UserDto> testUserDto = Mapper.mapList(
+                users
+                        .stream()
+                        .filter(u -> u.getCafe() != null)
+                        .collect(Collectors.toList()),
+                UserDto.class);
+        assertEquals(userDto, testUserDto);
     }
 }
