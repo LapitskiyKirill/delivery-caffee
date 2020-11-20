@@ -19,6 +19,7 @@ public class CafeServiceTest extends ServiceTest {
     @Test
     public void shouldSaveCafe() {
         NewCafeDto newCafeDto = TestData.getNewCafeDto();
+        newCafeDto.setName("name12");
         cafeService.create(newCafeDto);
         Cafe cafe = cafeRepository.findByName(newCafeDto.getName()).orElseThrow();
         assertEquals(cafe.getName(), newCafeDto.getName());
