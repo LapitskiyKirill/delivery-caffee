@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
@@ -12,5 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WorkTimeDto {
+    @NotNull
     private List<DayWorkTimeDto> dayWorkTimes;
 }

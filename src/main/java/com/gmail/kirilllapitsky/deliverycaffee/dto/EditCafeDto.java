@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
 @NoArgsConstructor
@@ -13,9 +15,12 @@ import lombok.NoArgsConstructor;
 public class EditCafeDto {
     private Long id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     private String address;
 
+    @NotNull
     private WorkTime workTime;
 }

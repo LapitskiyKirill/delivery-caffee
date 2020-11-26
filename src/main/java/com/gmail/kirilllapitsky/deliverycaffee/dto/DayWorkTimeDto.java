@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalTime;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
@@ -13,11 +14,15 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DayWorkTimeDto {
+    @NotNull
     private Days day;
 
+    @NotNull
     private LocalTime openTime;
 
+    @NotNull
     private LocalTime closeTime;
 
+    @NotNull
     private Boolean isDayOff;
 }

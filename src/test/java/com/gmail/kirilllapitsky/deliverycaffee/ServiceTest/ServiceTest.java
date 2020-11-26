@@ -1,4 +1,4 @@
-package com.gmail.kirilllapitsky.deliverycaffee;
+package com.gmail.kirilllapitsky.deliverycaffee.ServiceTest;
 
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
