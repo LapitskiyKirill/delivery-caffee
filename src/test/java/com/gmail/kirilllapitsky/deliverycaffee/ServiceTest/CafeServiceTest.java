@@ -4,7 +4,6 @@ import com.gmail.kirilllapitsky.deliverycaffee.TestData;
 import com.gmail.kirilllapitsky.deliverycaffee.dto.NewCafeDto;
 import com.gmail.kirilllapitsky.deliverycaffee.dto.NewWorkTimeDto;
 import com.gmail.kirilllapitsky.deliverycaffee.entity.Cafe;
-import com.gmail.kirilllapitsky.deliverycaffee.enumerable.Role;
 import com.gmail.kirilllapitsky.deliverycaffee.repository.CafeRepository;
 import com.gmail.kirilllapitsky.deliverycaffee.service.CafeService;
 import org.junit.Before;
@@ -28,17 +27,12 @@ public class CafeServiceTest extends ServiceTest {
     }
 
     @Test
-    public void shouldSaveCafe() {
-        Cafe cafe = cafeRepository.findByName(newCafeDto.getName()).orElseThrow();
-        assertEquals(cafe.getName(), newCafeDto.getName());
-        assertEquals(cafe.getAddress(), newCafeDto.getAddress());
-    }
-
-    @Test
     public void shouldSetWorkTime() {
         Cafe cafe = cafeRepository.findByName(newCafeDto.getName()).orElseThrow();
         NewWorkTimeDto newWorkTimeDto = TestData.getNewWorkTimeDto(cafe.getId());
+
         cafeService.setWorkTime(newWorkTimeDto);
+
         cafe = cafeRepository.findByName(newCafeDto.getName()).orElseThrow();
         assertEquals(cafe.getWorkTime().getDayWorkTimes().size(), 4);
     }
