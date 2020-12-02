@@ -1,14 +1,18 @@
 package com.gmail.kirilllapitsky.deliverycaffee.controller;
 
+import com.gmail.kirilllapitsky.deliverycaffee.dto.NewWorkerDto;
 import com.gmail.kirilllapitsky.deliverycaffee.dto.UserDto;
+import com.gmail.kirilllapitsky.deliverycaffee.entity.User;
 import com.gmail.kirilllapitsky.deliverycaffee.enumerable.Role;
+import com.gmail.kirilllapitsky.deliverycaffee.exception.NoPermissionException;
+import com.gmail.kirilllapitsky.deliverycaffee.exception.NoSuchEntityException;
+import com.gmail.kirilllapitsky.deliverycaffee.filter.UserFilterSettings;
 import com.gmail.kirilllapitsky.deliverycaffee.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.data.domain.Pageable;
-
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,22 +28,38 @@ public class UserController {
     }
 
     @GetMapping("findByLogin")
-    public UserDto find(@RequestParam String login) {
-        return userService.find(login, Optional.empty());
+    public UserDto find(@ModelAttribute User user,
+                        @RequestHeader("Authorization") String token,
+                        @RequestParam String login) throws NoPermissionException, NoSuchEntityException {
+        return userService.find(user, login, Optional.empty());
     }
 
     @GetMapping("findByLoginAndCafe")
-    public UserDto find(@RequestParam String login, @RequestParam Long cafeId) {
-        return userService.find(login, Optional.of(cafeId));
+    public UserDto find(@ModelAttribute User user,
+                        @RequestHeader("Authorization") String token,
+                        @RequestParam String login,
+                        @RequestParam Long cafeId) throws NoPermissionException, NoSuchEntityException {
+        return userService.find(user, login, Optional.of(cafeId));
     }
-
 
     @GetMapping("findByCafe")
     public List<UserDto> find(@RequestParam Long cafeId,
-                              @RequestParam(defaultValue = "0") int page,
-                              @RequestParam(defaultValue = "3") int size) {
-        Pageable paging = PageRequest.of(page, size);
-        return userService.findByCafe(cafeId, paging);
+                              @RequestBody Pageable pageable) {
+        return userService.findByCafe(cafeId, pageable);
     }
 
+    @GetMapping("findByFilter")
+    public List<UserDto> findFiltered(@ModelAttribute User user,
+                                      @RequestHeader("Authorization") String token,
+                                      @RequestBody UserFilterSettings userFilterSettings,
+                                      @RequestBody Pageable pageable) throws NoPermissionException, NoSuchEntityException {
+        return userService.findFiltered(user, userFilterSettings, pageable);
+    }
+
+    @GetMapping("create")
+    public UserDto create(@ModelAttribute User user,
+                          @RequestHeader("Authorization") String token,
+                          @Valid @RequestBody NewWorkerDto newWorkerDto) throws Exception {
+        return userService.create(newWorkerDto, user);
+    }
 }

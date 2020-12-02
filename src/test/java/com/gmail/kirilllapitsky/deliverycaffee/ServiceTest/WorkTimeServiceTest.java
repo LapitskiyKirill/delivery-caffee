@@ -35,16 +35,19 @@ public class WorkTimeServiceTest extends ServiceTest {
 
     @Test
     public void shouldSaveNewWorkTime() {
-
         List<DayWorkTimeDto> dayWorkTimes = TestData.getDayWorkTimeDto();
+
         WorkTime workTime = workTimeService.save(new NewWorkTimeDto(cafe.getId(), dayWorkTimes), cafe);
+
         assertEquals(workTime.getDayWorkTimes().size(), 4);
     }
 
     @Test
     public void shouldHaveCafe() {
         List<DayWorkTimeDto> dayWorkTimes = TestData.getDayWorkTimeDto();
+
         WorkTime workTime = workTimeService.save(new NewWorkTimeDto(cafe.getId(), dayWorkTimes), cafe);
+
         assertNotNull(workTime.getCafe());
     }
 }
