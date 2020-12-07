@@ -1,14 +1,14 @@
 package com.gmail.kirilllapitsky.deliverycaffee.ServiceTest;
 
 import com.gmail.kirilllapitsky.deliverycaffee.TestData;
+import com.gmail.kirilllapitsky.deliverycaffee.dto.EditWorkerDto;
 import com.gmail.kirilllapitsky.deliverycaffee.dto.NewWorkerDto;
 import com.gmail.kirilllapitsky.deliverycaffee.dto.UserDto;
+import com.gmail.kirilllapitsky.deliverycaffee.dto.UserFilterSettings;
 import com.gmail.kirilllapitsky.deliverycaffee.entity.Cafe;
 import com.gmail.kirilllapitsky.deliverycaffee.entity.User;
 import com.gmail.kirilllapitsky.deliverycaffee.enumerable.Role;
-import com.gmail.kirilllapitsky.deliverycaffee.exception.NoPermissionException;
 import com.gmail.kirilllapitsky.deliverycaffee.exception.NoSuchEntityException;
-import com.gmail.kirilllapitsky.deliverycaffee.filter.UserFilterSettings;
 import com.gmail.kirilllapitsky.deliverycaffee.repository.CafeRepository;
 import com.gmail.kirilllapitsky.deliverycaffee.repository.UserRepository;
 import com.gmail.kirilllapitsky.deliverycaffee.service.UserService;
@@ -19,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
@@ -44,6 +43,8 @@ public class UserServiceTest extends ServiceTest {
     private UserFilterSettings userFilterSettings;
     private NewWorkerDto newWorkerDto;
     private List<User> users;
+    private EditWorkerDto editWorkerDto;
+
 
     @Before
     public void setUp() {
@@ -61,7 +62,8 @@ public class UserServiceTest extends ServiceTest {
         userRepository.saveAll(users);
         cafeRepository.save(cafe);
         newWorkerDto = TestData.getNewWorkerDto(cafe.getId());
-        userFilterSettings = TestData.getUserFilterSettings(cafe);
+        userFilterSettings = TestData.getUserFilterSettings();
+        editWorkerDto = TestData.getEditWorkerDto(manager);
     }
 
     @Test
@@ -70,14 +72,6 @@ public class UserServiceTest extends ServiceTest {
         User testUser = userRepository.findById(user.getId()).orElseThrow();
 
         assertEquals(Role.MANAGER, testUser.getRole());
-    }
-
-    @Test
-    public void shouldFindUserByLogin() throws NoPermissionException, NoSuchEntityException {
-        UserDto userDto = Mapper.map(user, UserDto.class);
-        UserDto testUser = userService.find(administrator, user.getLogin(), Optional.empty());
-
-        assertEquals(userDto, testUser);
     }
 
     @Test
@@ -93,18 +87,85 @@ public class UserServiceTest extends ServiceTest {
     }
 
     @Test
-    public void shouldFindUsersByFilter() throws NoPermissionException, NoSuchEntityException {
-        List<UserDto> users = userService.findFiltered(administrator, userFilterSettings, PageRequest.of(0, 3));
+    public void shouldFindUsersByCafeFilter() throws NoSuchEntityException {
+        userFilterSettings.setCafeId(cafe.getId());
+        userFilterSettings.setLogin(null);
+        userFilterSettings.setRole(null);
+
+        List<UserDto> users = userService.find(userFilterSettings, PageRequest.of(0, 3));
 
         assertEquals(users.size(), 2);
     }
 
     @Test
-    public void shouldCreateWorker() throws Exception {
-        UserDto userDto = userService.create(newWorkerDto, manager);
+    public void shouldFindUsersByLoginAndCafeFilter() throws NoSuchEntityException {
+        userFilterSettings.setCafeId(cafe.getId());
+        userFilterSettings.setLogin("login1");
+        userFilterSettings.setRole(null);
+
+        List<UserDto> users = userService.find(userFilterSettings, PageRequest.of(0, 3));
+
+        assertEquals(users.size(), 1);
+    }
+
+    @Test
+    public void shouldFindUsersByLoginFilter() throws NoSuchEntityException {
+        userFilterSettings.setCafeId(null);
+        userFilterSettings.setLogin("login1");
+        userFilterSettings.setRole(null);
+
+        List<UserDto> users = userService.find(userFilterSettings, PageRequest.of(0, 3));
+
+        assertEquals(users.size(), 1);
+    }
+
+    @Test
+    public void shouldFindUsersByRoleFilter() throws NoSuchEntityException {
+        userFilterSettings.setCafeId(null);
+        userFilterSettings.setLogin(null);
+        userFilterSettings.setRole(Role.CUSTOMER);
+
+        List<UserDto> users = userService.find(userFilterSettings, PageRequest.of(0, 3));
+
+        assertEquals(users.size(), 1);
+    }
+
+    @Test
+    public void shouldCreateWorkerByManager() throws Exception {
+        UserDto userDto = userService.create(manager, newWorkerDto);
 
         assertEquals(userDto.getCafe().getId(), manager.getCafe().getId());
         assertEquals(userDto.getLogin(), newWorkerDto.getLogin());
         assertEquals(userDto.getRole(), newWorkerDto.getRole());
+    }
+
+    @Test
+    public void shouldCreateManagerAdministrator() throws Exception {
+        newWorkerDto.setRole(Role.MANAGER);
+
+        UserDto userDto = userService.create(administrator, newWorkerDto);
+
+        assertEquals(userDto.getCafe().getId(), newWorkerDto.getCafeId());
+        assertEquals(userDto.getLogin(), newWorkerDto.getLogin());
+        assertEquals(userDto.getRole(), Role.MANAGER);
+    }
+
+    @Test
+    public void shouldDeleteWorker() throws Exception {
+        userFilterSettings.setLogin(user.getLogin());
+
+        userService.delete(user.getId());
+        List<UserDto> foundUsers = userService.find(userFilterSettings, PageRequest.of(0, 3));
+
+        assertEquals(0, foundUsers.size());
+    }
+
+    @Test
+    public void shouldEditWorker() throws Exception {
+        editWorkerDto.setRole(Role.COOKER);
+
+        UserDto editedWorker = userService.edit(editWorkerDto);
+
+        assertEquals(Role.COOKER, editedWorker.getRole());
     }
 }

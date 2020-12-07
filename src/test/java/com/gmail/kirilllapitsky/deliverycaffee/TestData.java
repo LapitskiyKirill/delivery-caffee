@@ -1,20 +1,16 @@
 package com.gmail.kirilllapitsky.deliverycaffee;
 
-import com.gmail.kirilllapitsky.deliverycaffee.dto.DayWorkTimeDto;
-import com.gmail.kirilllapitsky.deliverycaffee.dto.NewCafeDto;
-import com.gmail.kirilllapitsky.deliverycaffee.dto.NewWorkTimeDto;
-import com.gmail.kirilllapitsky.deliverycaffee.dto.NewWorkerDto;
+import com.gmail.kirilllapitsky.deliverycaffee.dto.*;
 import com.gmail.kirilllapitsky.deliverycaffee.entity.Cafe;
 import com.gmail.kirilllapitsky.deliverycaffee.entity.User;
 import com.gmail.kirilllapitsky.deliverycaffee.enumerable.Days;
 import com.gmail.kirilllapitsky.deliverycaffee.enumerable.Role;
-import com.gmail.kirilllapitsky.deliverycaffee.filter.UserFilterSettings;
+import com.gmail.kirilllapitsky.deliverycaffee.util.Mapper;
 
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 public class TestData {
     public static Cafe getCafe() {
@@ -53,7 +49,13 @@ public class TestData {
         return new NewWorkerDto("workerLogin", "password", Role.COOKER, "email", cafeId);
     }
 
-    public static UserFilterSettings getUserFilterSettings(Cafe cafe) {
-        return new UserFilterSettings(Optional.of(cafe.getId()), Optional.of(Role.MANAGER));
+    public static UserFilterSettings getUserFilterSettings() {
+        return new UserFilterSettings(null, null, null);
+    }
+
+    public static EditWorkerDto getEditWorkerDto(User user) {
+        EditWorkerDto editWorkerDto = Mapper.map(user, EditWorkerDto.class);
+        editWorkerDto.setCafeId(user.getCafe().getId());
+        return editWorkerDto;
     }
 }

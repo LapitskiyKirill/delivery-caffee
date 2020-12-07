@@ -13,7 +13,9 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NewWorkerDto {
+public class EditWorkerDto {
+    @NotNull
+    private Long id;
     @NotBlank
     private String login;
     @NotBlank
