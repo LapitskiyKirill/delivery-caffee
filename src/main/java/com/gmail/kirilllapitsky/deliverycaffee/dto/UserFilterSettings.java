@@ -1,21 +1,17 @@
 package com.gmail.kirilllapitsky.deliverycaffee.dto;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.gmail.kirilllapitsky.deliverycaffee.enumerable.Role;
+import com.gmail.kirilllapitsky.deliverycaffee.validation.FilterWorkerTypeValidator;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
-    private Long id;
-
+public class UserFilterSettings {
     private String login;
-
+    private Long cafeId;
+    @FilterWorkerTypeValidator
     private Role role;
-
-    private UserCafeDto cafe;
 }

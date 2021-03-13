@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface CafeRepository extends CrudRepository<Cafe, Long> {
     Optional<Cafe> findById(Long id);
+
+    Optional<Cafe> findByName(String name);
 }

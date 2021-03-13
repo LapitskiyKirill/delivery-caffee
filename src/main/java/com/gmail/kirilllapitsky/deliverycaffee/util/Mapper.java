@@ -6,9 +6,8 @@ import com.gmail.kirilllapitsky.deliverycaffee.enumerable.Role;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 
-import javax.print.attribute.standard.Destination;
-import java.util.List;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Mapper {
@@ -19,7 +18,7 @@ public class Mapper {
         mapper.getConfiguration()
                 .setFieldMatchingEnabled(true)
                 .setSkipNullEnabled(false)
-                .setMatchingStrategy(MatchingStrategies.LOOSE);
+                .setMatchingStrategy(MatchingStrategies.STRICT);
         mapper.typeMap(RegisterCustomerDto.class, User.class).addMappings(mapper ->
                 mapper.map(__ -> Role.CUSTOMER, User::setRole)
         );

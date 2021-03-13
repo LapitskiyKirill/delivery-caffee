@@ -1,7 +1,10 @@
 package com.gmail.kirilllapitsky.deliverycaffee.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,16 +24,18 @@ public class Cafe {
 
     @Column(name = "address")
     private String address;
+    @OneToOne
+    @JoinColumn(name = "work_time_id")
+    private WorkTime workTime;
 
-    @Column(name = "work_time")
-    private String workTime;
-
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "cafe", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "cafe", cascade = CascadeType.ALL)
     private List<User> users;
 
-    public Cafe(String name, String address, String workTime) {
+    public Cafe(String name, String address, WorkTime workTime, List<User> users) {
         this.name = name;
         this.address = address;
         this.workTime = workTime;
+        this.users = users;
     }
 }

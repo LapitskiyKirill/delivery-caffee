@@ -7,6 +7,8 @@ import com.gmail.kirilllapitsky.deliverycaffee.service.CafeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("cafe")
 @RequiredArgsConstructor
@@ -19,12 +21,7 @@ public class CafeController {
     }
 
     @PostMapping("create")
-    public CafeDto create(@RequestBody NewCafeDto newCafeDto) {
-        return cafeService.create(newCafeDto);
-    }
-
-    @PostMapping("edit")
-    public void edit(@RequestBody EditCafeDto editCafeDto) {
-        cafeService.edit(editCafeDto);
+    public void create(@Valid @RequestBody NewCafeDto newCafeDto) {
+        cafeService.create(newCafeDto);
     }
 }

@@ -1,26 +1,28 @@
 package com.gmail.kirilllapitsky.deliverycaffee.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.gmail.kirilllapitsky.deliverycaffee.entity.WorkTime;
+import com.gmail.kirilllapitsky.deliverycaffee.enumerable.Days;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import java.time.LocalTime;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EditCafeDto {
-    private Long id;
+public class DayWorkTimeDto {
+    @NotNull
+    private Days day;
 
     @NotNull
-    private String name;
+    private LocalTime openTime;
 
     @NotNull
-    private String address;
+    private LocalTime closeTime;
 
     @NotNull
-    private WorkTime workTime;
+    private Boolean isDayOff;
 }
